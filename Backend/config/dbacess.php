@@ -5,5 +5,5 @@ $dbuser = "hoteladmin";
 $dbpassword = "hoteladmin";
 $dbname = "buchhaus";
 
-$db = new mysqli($hst, $dbuser, $dbpassword, $dbname);
+$db = new mysqli($host, $dbuser, $dbpassword, $dbname);
 ?>
