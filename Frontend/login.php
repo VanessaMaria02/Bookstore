@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Login</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="login.js"></script>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="res/css/style.css">
+
+	
 </head>
 
 <body>
+<?php include 'navbar.php'; ?>
 	
 	<form id="login-form" method="post">
   <h2>Login</h2>
@@ -22,12 +26,7 @@
 	<p id="result"></p>
 
   <style>
-		body {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-		}
+		
 		.form-container {
 			width: 400px;
 			padding: 40px;
@@ -49,7 +48,6 @@
 	</style>
 
   <?php
-session_start();
 if (isset($_POST['username']) && isset($_POST['password'])) {
     //check if username and password are correct
     if ($_POST['username'] == 'admin' && $_POST['password'] == 'password') {
