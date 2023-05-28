@@ -6,11 +6,16 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="login.js"></script>
 	<link rel="stylesheet" href="res/css/style.css">
+	<form id="login-form" method="post" action="../Backend/login.php">
+</form>
 
 </head>
 
 <body>
-	<?php include 'navbar.php'; ?>
+	<?php include ("navbar.php"); 
+		include ("../Backend/logic/loginDB.php");
+	 ?>
+	
 
 	<form id="login-form" method="post">
 		<h2>Login</h2>
@@ -48,47 +53,6 @@
 		}
 	</style>
 
-	<?php
-	// Check if a session is not already active
-	if (session_status() !== PHP_SESSION_ACTIVE) {
-		session_start();
-	}
-
-	// Establish database connection
-	$servername = "localhost";
-	$username = "admin";
-	$password = "admin123";
-	$dbname = "projekt";
-
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	}
-
-	// Process login form submission
-	if (isset($_POST['username']) && isset($_POST['password'])) {
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-
-		// Prepare the query with proper escaping to prevent SQL injection
-		$username = $conn->real_escape_string($username);
-		$password = $conn->real_escape_string($password);
-		$sql = "SELECT * FROM loginuser WHERE username = '$username' AND password = '$password'";
-		$result = $conn->query($sql);
-
-		if ($result->num_rows == 1) {
-			// Login successful
-			$_SESSION['username'] = $username;
-			echo 'success';
-		} else {
-			// Login failed
-			echo 'failure';
-		}
-	}
-
-	// Close the database connection
-	$conn->close();
-	?>
 
 </body>
 
