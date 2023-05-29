@@ -1,5 +1,5 @@
 <?php
-include("config/dataHandler.php");
+include("./config/db_requests/dataHandler.php");
 
 class Logic{
     private $dh;
@@ -11,8 +11,8 @@ class Logic{
     function handleRequest($method, $param)
     {
         switch ($method) {
-            case "getAllBooks":
-                $res = $this->dh->getAllBooks();
+            case "getAllProducts":
+                $res = $this->dh->getAllProducts();
                 break;
             default:
                 $res = "NI";
