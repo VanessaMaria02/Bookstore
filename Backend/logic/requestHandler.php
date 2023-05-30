@@ -14,6 +14,12 @@ class Logic{
             case "getAllProducts":
                 $res = $this->dh->getAllProducts();
                 break;
+            case "queryBookTitle":
+                $res = $this->dh->getTitleProducts($param);
+                break;
+            case "getKatProducts":
+                $res = $this->dh->getKatProducts($param);
+                break;
             default:
                 $res = "NI";
                 break;

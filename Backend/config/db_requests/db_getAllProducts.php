@@ -5,4 +5,4 @@ if(true){
     $sql = "SELECT * FROM produkte";
     $res = $db->query($sql);
     $db->close();
-}
+} 
