@@ -47,5 +47,23 @@ class DataHandler{
         return $result;
     }
 
+    public function  getIDProduct($param){
+        require("db_getIDProducts.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new Product(
+                $line["pr_id"],
+                $line["pr_title"],
+                $line["pr_bild"],
+                $line["pr_preis"]
+            ));
+        }
+        return $result;
+    }
+
+
+    
+
     
 }

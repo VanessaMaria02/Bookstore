@@ -27,6 +27,8 @@
 				<option>Manga</option>
                 <option selected>Romane</option> 
             </select>
+            <img id= "warenkorb" src="./res/img/warenkorbicon.jpg" with = "40px" height = "40px">
+            <p id="warenAnzahl" style = "font-size:25px;"><b>0</b></p>
         </div>
     </div>
     <div class="col-sm"></div>

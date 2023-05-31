@@ -20,6 +20,9 @@ class Logic{
             case "getKatProducts":
                 $res = $this->dh->getKatProducts($param);
                 break;
+            case "getProductbyID":
+                $res = $this->dh->getIDProduct($param);
+                break;
             default:
                 $res = "NI";
                 break;

@@ -35,9 +35,6 @@
                             <a class="nav-link" href="produkte.php">Produkte</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="warenkorb.php">Warenkorb</a>
-                        </li>
-                        <li class="nav-item">
                           <a class="nav-link" href="userbestellungen.php">Bestellungen</a>
                         </li>
                         <li class="nav-item">
@@ -64,9 +61,6 @@
                         echo'
                         <li class="nav-item">
                             <a class="nav-link" href="produkte.php">Produkte</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="warenkorb.php">Warenkorb</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="registrierung.php">Registrierung</a>
