@@ -1,13 +1,12 @@
 <?php
-//öffnet Zugang zur Datenbank
-$host = "localhost";
-$dbuser = "hoteladmin";
-$dbpassword = "hoteladmin";
-$dbname = "buchhaus";
 
-$db = new mysqli($host, $dbuser, $dbpassword, $dbname);
-if ($db->connect_error) {
-    echo "Connection Error: " . $db->connect_error;
-    exit();
+$hostName = "localhost";
+$dbUser = "root";
+$dbPassword = "";
+$dbName = "buchhaus";
+$conn = mysqli_connect($hostName, $dbUser, $dbPassword, $dbName);
+if (!$conn) {
+    die("Something went wrong;");
 }
+
 ?>
