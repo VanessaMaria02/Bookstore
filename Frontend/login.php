@@ -1,60 +1,51 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title>Login</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="login.js"></script>
-	<link rel="stylesheet" href="res/css/style.css">
-	<form id="login-form" method="post" action="../Backend/login.php">
-</form>
 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-	<?php include ("navbar.php"); 
-		include ("../Backend/logic/loginDB.php");
-	 ?>
-	
-
-	<form id="login-form" method="post">
-		<h2>Login</h2>
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" required>
-		<br>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
-		<br>
-		<input type="submit" value="Login">
-	</form>
-	<p id="result"></p>
-
-	<style>
-		.form-container {
-			width: 400px;
-			padding: 40px;
-			background-color: #fff;
-			box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-		}
-
-		.form-control:focus {
-			border-color: #d6d6d6;
-			box-shadow: 0 0 0 0.2rem rgba(214, 214, 214, 0.5);
-		}
-
-		.form-control.error {
-			border-color: #dc3545;
-			box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
-		}
-
-		.form-control.success {
-			border-color: #28a745;
-			box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
-		}
-	</style>
+<?php
+ include ("navbar.php");
+ if (isset($_SESSION['user'])) { 
+    header("Location: index.php");
+ }
+    else{
+        ?>
+  
 
 
+    <div class="container">
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="email" placeholder="Enter Email:" name="email" id="email" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Enter Password:" name="password" id="password" class="form-control"/>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="remember" id="remember" />
+                <label class="form-check-label" for="remember">Remember Me</label>
+            </div>
+
+
+            <div class="form-btn">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+         
+        </form>
+        <div>
+            <p>Not registered yet <a href="registrierung.php">Register Here</a></p>
+        </div>
+    </div>
+
+<?php } ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="login.js"></script>
 </body>
-
 </html>
-
