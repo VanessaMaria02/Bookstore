@@ -17,7 +17,6 @@
     </div>
 </div>
 
-
 <footer id="footer">
     <div class="footer-basic">
             <ul class="list-inline">
@@ -32,6 +31,3 @@
   </footer>   
 </body>
 </html>
-
-
-

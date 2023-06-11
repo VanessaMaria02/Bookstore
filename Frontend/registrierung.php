@@ -13,7 +13,9 @@ if (isset($_SESSION["user"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="res/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+
 </head>
 <body>
     <div class="container">
@@ -92,5 +94,18 @@ if (isset($_SESSION["user"])) {
 
         }
         ?>
+
+<footer id="footer">
+    <div class="footer-basic">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="index.php">Home</a></li>
+                <li class="list-inline-item"><a href="impressum.html">Impressum</a></li>
+                <li class="list-inline-item"><a href="produkte.php">Produkte</a></li>
+                <li class="list-inline-item"><a href="registrierung.php">Registrierung</a></li>
+                <li class="list-inline-item"><a href="login.php">Login</a></li>
+            </ul>
+            <p class="copyright">BuchHaus © 2023</p>
+    </div>
+  </footer>   
 </body>
 </html>
