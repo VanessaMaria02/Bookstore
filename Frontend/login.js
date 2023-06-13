@@ -27,13 +27,15 @@ $(document).ready(function () {
 
     // Make AJAX request for login
     $.ajax({
-      type: 'POST',
-      url: '../Backend/config/db_requests/loginDB.php', // Adjust this path based on your directory structure
+      type: 'GET',
+      url: '../Backend/serviceHandler.php', // Adjust this path based on your directory structure
       dataType: 'json',
       data: {
-        u_username: u_username,
-        u_password: u_password,
-        login: 'login'
+        method:"login",
+        param:JSON.stringify({
+          username: u_username,
+          password: u_password,
+        })
       },
       success: function (response) {
         // Handle the login response

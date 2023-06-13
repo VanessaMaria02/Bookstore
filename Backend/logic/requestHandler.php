@@ -23,6 +23,9 @@ class Logic{
             case "getProductbyID":
                 $res = $this->dh->getIDProduct($param);
                 break;
+            case "login":
+                $res = $this->dh->login($param);
+                break;
             default:
                 $res = "NI";
                 break;

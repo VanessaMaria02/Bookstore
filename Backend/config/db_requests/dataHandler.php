@@ -2,6 +2,15 @@
 include("product.php");
 class DataHandler{
 
+    public function login($param){
+        $data = json_decode($param);
+        $username = $data->username;
+        $password = md5($data->password); // Hash the password using md5()
+        $res = array();
+        require("loginDB.php");
+        return $res;
+    }
+
     public function getAllProducts(){
         require("db_getAllProducts.php");
         $result = array();
