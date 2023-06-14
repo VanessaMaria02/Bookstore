@@ -24,7 +24,13 @@ if (isset($_SESSION["admin"])) {
 
 <form method="post" class="row g-3">
 
-<section class>
+<?php
+if (isset($_GET['success'])) {
+    echo "<p>Die Registrierung war erfolgreich!</p>";
+}
+?>
+
+<section>
   <div class="container py-5 h-100">
   <div class="row d-flex justify-content-center align-items-center h-100">
   <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -37,15 +43,15 @@ if (isset($_SESSION["admin"])) {
     <p class="text-white-50 mb-5"></p>
 
     <div class="form-outline form-white mb-4">
-      <input type="text" name ="uname" id="Username" class="form-control form-control-lg" placeholder="Username" required/>
+      <input type="text" name ="uname" id="Username" class="form-control form-control-lg" placeholder="Username" required>
     </div>
 
     <div class="form-outline form-white mb-4">
-      <input type="password" name = "ps" id="Passwort" placeholder="Passwort" required minlength="8" class="form-control form-control-lg" />
+      <input type="password" name = "ps" id="Passwort" placeholder="Passwort" required minlength="8" class="form-control form-control-lg">
     </div>
 
     <div class="form-outline form-white mb-4">
-        <input type="checkbox" class="form-check-input" name="remember" id="remember" />
+        <input type="checkbox" class="form-check-input" name="remember" id="remember">
         <label class="form-check-label" for="remember">Login merken</label>
     </div>
 
@@ -63,7 +69,7 @@ if (isset($_SESSION["admin"])) {
 </div>
 </div>
 </section>
-    
+</Form>
     
     <?php include 'footer.php'; ?>
     <script src="login.js"  type="text/javascript"></script>

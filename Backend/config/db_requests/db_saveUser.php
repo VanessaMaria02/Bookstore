@@ -63,7 +63,8 @@ if(true){
 
     //Daten in Datenbank übertragen
     //Password hashen
-    $Passwort = password_hash($password, PASSWORD_DEFAULT);
+    //$Passwort = password_hash($password, PASSWORD_DEFAULT);
+    $Passwort = $password;
     $role = 0;
 
     //Controllieren ob Username bereits verwendet wird

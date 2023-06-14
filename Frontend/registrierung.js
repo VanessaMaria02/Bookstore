@@ -38,7 +38,7 @@ function saveUser(){
     console.log(userData);
     ajaxHandler("saveUser", userData, function(response){
         console.log(response);
-        alert('Registrierung erfolgreich!');
+        location.replace("./login.php?success")
     });
 
 

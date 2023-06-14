@@ -27,7 +27,7 @@ function login(){
 }
 
 function checkUser(response, password){
-  const bcrypt = require('bcryptjs');
+  //const bcrypt = require('bcryptjs');
   
   let uname = " ";
   let password2 = " ";
@@ -39,7 +39,8 @@ function checkUser(response, password){
     role = element.urole;
   });
 
-  let haspassword = bcrypt.hashSync(password2, 10);
+  //let haspassword = bcrypt.hashSync(password2, 10);
+  let haspassword = password2;
 
 
   if(haspassword != password){
