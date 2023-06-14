@@ -108,10 +108,11 @@ function getCardProducts(){
 
 function setCartProducts(products){
     var productsJSON = JSON.stringify(products);
-    document.cookie = "cartProducts=" + productsJSON +"; path=/"
+    document.cookie = "cartProducts=" + productsJSON +"; path=/";
 }
 
 function displayProducts(products){
+    console.log(products);
     products.forEach(element =>{
         $("#produktBereich").append('<div class="col-md-3 col-sm-6"><div class="product-grid2"><div class="product-image2"><a href="#"><img class="pic-1" src="./res/img/produktBilder/'
         + element.image_url +
@@ -141,7 +142,6 @@ function ajaxHandler(method, searchterm, nextFunc = ()=>{}){
             nextFunc(response);
         },
         error: function(xhr){
-            console.log(6);
             console.log(xhr);
             alert('Error, ein Problem ist aufgetreten: '+xhr.responseText);
         }

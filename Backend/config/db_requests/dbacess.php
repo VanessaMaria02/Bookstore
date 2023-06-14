@@ -2,8 +2,8 @@
 
 //öffnet Zugang zur Datenbank
 $host = "localhost";
-$dbuser = "root";
-$dbpassword = "";
+$dbuser = "hoteladmin";
+$dbpassword = "hoteladmin";
 $dbname = "buchhaus";
 
 $db = new mysqli($host, $dbuser, $dbpassword, $dbname);

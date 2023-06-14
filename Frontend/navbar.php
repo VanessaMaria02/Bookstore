@@ -25,9 +25,6 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="impressum.php">Impressum</a>
-                </li>
                 <?php
                 //Je nach dem ob anonym/user/admin werden unterschiedliche Links gezeigt darüber sind die Links die allen gezeigt werden
                 if (isset($_SESSION['user'])) { 

@@ -1,15 +1,27 @@
 <?php
 include("product.php");
+include("user.php");
 class DataHandler{
 
-    public function login($param){
-        $data = json_decode($param);
-        $username = $data->username;
-        $password = md5($data->password); // Hash the password using md5()
-        $res = array();
-        require("loginDB.php");
-        return $res;
-    }
+    
+
+    private function sqlResultToArray($sqlResult)
+        {
+            if($sqlResult === null)
+            {
+                return null;
+            }
+            if(is_string($sqlResult))
+            {
+                return $sqlResult;
+            }
+            $resultArray = array();
+            foreach ($sqlResult as $key => $value) 
+            {
+                $resultArray[$key] = $value; 
+            }
+            return $resultArray;
+        }
 
     public function getAllProducts(){
         require("db_getAllProducts.php");
@@ -37,6 +49,22 @@ class DataHandler{
                 $line["pr_bild"],
                 $line["pr_preis"]
             ));
+        }
+        return $result;
+    }
+
+    public function login($param){
+        require("db_login.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new User(
+                $line["u_id"],
+                $line["u_username"],
+                $line["u_password"],
+                $line["u_role"]
+            ));
+          
         }
         return $result;
     }
@@ -71,8 +99,24 @@ class DataHandler{
         return $result;
     }
 
-
-    
-
-    
+    public function  saveUser($param){
+        require("db_saveUser.php");
+        //$result = array();
+        //foreach ($res as $line)
+        //{
+           // array_push($result, new Person(
+               // $line["anrede"],
+                //$line["vname"],
+                //$line["nname"],
+                //$line["adresse"],
+                //$line["plz"],
+                //$line["ort"],
+                //$line["email"],
+                //$line["uname"]
+           //));
+        //}
+        //$result = $res;
+        $result = $this->sqlResultToArray($res);
+        return $result;
+        }
 }

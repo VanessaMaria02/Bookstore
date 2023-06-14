@@ -26,6 +26,9 @@ class Logic{
             case "login":
                 $res = $this->dh->login($param);
                 break;
+            case "saveUser":
+                $res = $this->dh->saveUser($param);
+                break;
             default:
                 $res = "NI";
                 break;

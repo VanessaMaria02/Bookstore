@@ -58,5 +58,7 @@ include ("navbar.php");
     </li>
   </ul>
 
+
+  <?php include 'footer.php'; ?>
 </body>
 </html>
