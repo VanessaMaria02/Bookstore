@@ -3,6 +3,7 @@
 $(document).ready(function() {
   console.log("hello");
   console.log(document.cookie);
+  getLoginCookie();
 
   $("#login").on("click", login);
 
@@ -12,22 +13,61 @@ function login(){
   console.log("click");
   let uname = document.getElementById("Username").value;
   let password = document.getElementById("Passwort").value;
-  
+  var rememberCheckbox = document.getElementById("remember");
 
 
   console.log(uname);
 
-  ajaxHandler("login", "Vanessa2", function(response){
+  ajaxHandler("login", uname, function(response){
     console.log(response);
     checkUser(response, password);
+    if(rememberCheckbox.checked){
+      let userdaten ={
+        "uname": uname,
+        "password": password
+      };
+      setLoginCookie(userdaten);
+    }
   });
-
-
-
 }
 
+  function logincookie(userdaten){
+    console.log(userdaten);
+    let uname;
+    let password;
+
+    uname = userdaten.uname;
+    password = userdaten.password;
+
+    ajaxHandler("login", uname, function(response){
+      console.log(response);
+      checkUser(response, password);
+    });
+
+    
+  }
+
+  function getLoginCookie(){
+    console.log("getLoginCookie");
+    var cookieValue = document.cookie
+      .split("; ")
+      .map(row => row.trim())
+      .find(row => row.startsWith("loginDaten="));
+
+    if(cookieValue){
+      var userDatenJson = cookieValue.split("=")[1];
+      var userDaten = JSON.parse(userDatenJson);
+      logincookie(userDaten);
+    }else{
+      return[];
+    }
+
+  }
+
+
+
 function checkUser(response, password){
-  //const bcrypt = require('bcryptjs');
+
   
   let uname = " ";
   let password2 = " ";
@@ -39,7 +79,10 @@ function checkUser(response, password){
     role = element.urole;
   });
 
-  //let haspassword = bcrypt.hashSync(password2, 10);
+  console.log(password);
+  console.log(password2);
+
+
   let haspassword = password2;
 
 
@@ -62,6 +105,7 @@ function checkUser(response, password){
     setRoleCookie(userRole);
     console.log(document.cookie);
     alert("Erfolgreich eingelogt");
+    location.replace("./index.php?success")
     return;
   }
 
@@ -74,6 +118,7 @@ function checkUser(response, password){
     setRoleCookie(userRole);
     console.log(document.cookie);
     alert("Erfolgreich eingelogt");
+    location.replace("./index.php?success")
     return;
   }
 
@@ -86,9 +131,11 @@ function setRoleCookie(urole){
 }
 
 function setLoginCookie(userdaten){
-  var uJSON = JSON.stringify(urole);
+  var uJSON = JSON.stringify(userdaten);
   document.cookie = "loginDaten="+uJSON+"; path=/";
 }
+
+
 
 
 
