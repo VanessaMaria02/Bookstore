@@ -38,6 +38,9 @@ class Logic{
             case "AllUserName":
                 $res = $this->dh->AllUserName($param);
                 break;
+            case "getIDBestellungen":
+                $res = $this->dh->getIDBestellungen($param);
+                break;
             default:
                 $res = "NI";
                 break;

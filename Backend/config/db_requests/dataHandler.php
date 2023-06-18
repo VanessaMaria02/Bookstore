@@ -3,6 +3,7 @@ include("product.php");
 include("user.php");
 include("person.php");
 include("password.php");
+include("bestellungen.php");
 class DataHandler{
 
     
@@ -35,6 +36,23 @@ class DataHandler{
                 $line["pr_title"],
                 $line["pr_bild"],
                 $line["pr_preis"]
+            ));
+        }
+        return $result;
+    }
+    
+
+    public function getIDBestellungen($param){
+        require("db_getIDBestellungen.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new Bestellung(
+                $line["b_id"],
+                $line["u_id"],
+                $line["pr_id"],
+                $line["b_anzahl"],
+                $line["b_timestamp"]
             ));
         }
         return $result;

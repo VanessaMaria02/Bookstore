@@ -1,5 +1,11 @@
 $(document).ready(function(){
     ajaxHandler("getAllUser", "", displayUser);
+    
+    $("#myTable").on("click", ".btn-secondary", function(){
+        console.log("click");
+        var id = $(this).closest("tr").attr("id");
+        location.replace("./person.php?id="+id);
+    });
 })
 
 function displayUser(users){
