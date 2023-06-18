@@ -1,7 +1,6 @@
 
 
 $(document).ready(function() {
-  console.log("hello");
   console.log(document.cookie);
   getLoginCookie();
 
@@ -15,11 +14,14 @@ function login(){
   let password = document.getElementById("Passwort").value;
   var rememberCheckbox = document.getElementById("remember");
 
+ 
+
 
   console.log(uname);
 
   ajaxHandler("login", uname, function(response){
     console.log(response);
+    
     checkUser(response, password);
     if(rememberCheckbox.checked){
       let userdaten ={
@@ -66,27 +68,35 @@ function login(){
 
 
 
-function checkUser(response, password){
-
+function checkUser(userDaten, password){
   
   let uname = " ";
   let password2 = " ";
   let role = " ";
 
-  response.forEach(element =>{
+  userDaten.forEach(element =>{
     uname = element.uname;
     password2 = element.password;
     role = element.urole;
   });
 
-  console.log(password);
-  console.log(password2);
+  let hashPassword = password;
+
+  //Passwort hashen funktioniert nicht?
+
+  //console.log(password);
+  //console.log(password2);
+
+ //console.log("befor");
+  //ajaxHandler("hashPassword",password, function(response){
+   //console.log(response);
+    //hashPassword = response.password;
+  //});
+  //console.log("afer");
+  
 
 
-  let haspassword = password2;
-
-
-  if(haspassword != password){
+  if(hashPassword != password2){
     alert("Passwörter stimmen nicht überein!");
     return;
   }
@@ -104,8 +114,7 @@ function checkUser(response, password){
     };
     setRoleCookie(userRole);
     console.log(document.cookie);
-    alert("Erfolgreich eingelogt");
-    location.replace("./index.php?success")
+    location.replace("./index.php?success=");
     return;
   }
 
@@ -117,8 +126,7 @@ function checkUser(response, password){
     };
     setRoleCookie(userRole);
     console.log(document.cookie);
-    alert("Erfolgreich eingelogt");
-    location.replace("./index.php?success")
+    location.replace("./index.php?success=");
     return;
   }
 

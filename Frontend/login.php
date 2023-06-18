@@ -11,14 +11,19 @@
 <body>
 <?php include "navbar.php";?>
 
-<form method="post" class="row g-3">
+
 
 <?php
 if (isset($_GET['success'])) {
-    echo "<p>Die Registrierung war erfolgreich!</p>";
+  echo 
+  "<div class='alert alert-success alert-dismissible fade show clearfix' role='alert'>
+      <strong>Erfolgreich!</strong> 
+      " . $_GET["success"] . "
+      <a href='login.php' type='button' class='close'style='text-decoration:none;color:black;' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span></a>
+  </div>";
 }
 ?>
-
+<Form method="post" class="row g-3">
 <section>
   <div class="container py-5 h-100">
   <div class="row d-flex justify-content-center align-items-center h-100">
@@ -43,13 +48,13 @@ if (isset($_GET['success'])) {
         <input type="checkbox" class="form-check-input" name="remember" id="remember">
         <label class="form-check-label" for="remember">Login merken</label>
     </div>
-
+   
     <button class="btn btn-outline-light btn-lg px-5" id="login" name = "login">Login</button>
   </div>
 
   <div>
      <p>Noch keinen Account? <a href="registrierung.php">Registrier dich hier!</a></p>
-    </div>
+  </div>
 
 
 </div>

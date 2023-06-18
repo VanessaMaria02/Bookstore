@@ -1,6 +1,8 @@
 <?php
 include("product.php");
 include("user.php");
+include("person.php");
+include("password.php");
 class DataHandler{
 
     
@@ -55,7 +57,7 @@ class DataHandler{
 
     public function login($param){
         require("db_login.php");
-        $result = array();
+            $result = array();
         foreach ($res as $line)
         {
             array_push($result, new User(
@@ -66,6 +68,47 @@ class DataHandler{
             ));
           
         }
+        return $result;
+        
+        
+    }
+    
+
+    public function getAllUser(){
+        require("db_getAllUsers.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new User(
+                $line["u_id"],
+                $line["u_username"],
+                $line["u_password"],
+                $line["u_role"]
+            ));
+        }
+        return $result;
+    }
+
+    public function AllUserName(){
+        require("db_getAllUsersName.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new User(
+                $line["u_id"],
+                $line["u_username"],
+                $line["u_password"],
+                $line["u_role"]
+            ));
+        }
+        return $result;
+    }
+
+    public function hashPassword($param){
+        require("db_hashPassword.php");
+        $result = array();
+        array_push($result, new Password(
+            $res));
         return $result;
     }
 

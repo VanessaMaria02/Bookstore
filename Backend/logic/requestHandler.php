@@ -29,6 +29,15 @@ class Logic{
             case "saveUser":
                 $res = $this->dh->saveUser($param);
                 break;
+            case "hashPassword":
+                $res = $this->dh->hashPassword($param);
+                break;
+            case "getAllUser":
+                $res = $this->dh->getAllUser($param);
+                break;
+            case "AllUserName":
+                $res = $this->dh->AllUserName($param);
+                break;
             default:
                 $res = "NI";
                 break;

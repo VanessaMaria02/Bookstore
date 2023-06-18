@@ -62,7 +62,7 @@ if(true){
     }
 
     //Daten in Datenbank übertragen
-    //Password hashen
+    //Password hashen funktioniert nicht -> sobald passwort gehashed wird bekommt man keine response vom Ajax call??
     //$Passwort = password_hash($password, PASSWORD_DEFAULT);
     $Passwort = $password;
     $role = 0;
@@ -81,7 +81,7 @@ if(true){
     $sql = "INSERT INTO user(u_username, u_password, u_role) VALUES (?, ?, ?)";
     if (!$stmt = $db->prepare($sql))
     {
-        header("location: registration.php?error=error");
+        header("location: registrierung.php?error=error");
         exit();
     }
     $stmt->bind_param("ssi",$uname, $Passwort, $role);
@@ -101,7 +101,7 @@ if(true){
     $sql = "INSERT INTO personen(u_id, p_vorname, p_nachname, p_anrede, p_adresse, p_plz, p_ort, p_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     if (!$stmt = $db->prepare($sql))
     {
-        header("location: registration.php?error=error");
+        header("location: registrierung.php?error=error");
         exit();
     }
     $stmt->bind_param("issssiss",$zeile['u_id'], $vname, $nname, $anrede, $adresse, $plz, $ort, $email);
@@ -112,7 +112,5 @@ if(true){
     
 
     $res = $param;
-
- 
 }
 ?>

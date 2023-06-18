@@ -38,7 +38,7 @@ function saveUser(){
     console.log(userData);
     ajaxHandler("saveUser", userData, function(response){
         console.log(response);
-        location.replace("./login.php?success")
+        location.replace("./login.php?success=")
     });
 
 
