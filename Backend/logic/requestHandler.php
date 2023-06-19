@@ -50,10 +50,25 @@ class Logic{
             case "UpdateUser":
                 $res = $this->dh->UpdateUser($param);
                 break;
+            case "editProduktBestellung":
+                $res = $this->dh->editProduktBestellung($param);
+                break;
+            case "deletProduktBestellung":
+                $res = $this->dh->deletProduktBestellung($param);
+                break;
+            case "getAllCategories":
+                $res = $this->dh->getAllCategories($param);
+                break;
+            case "creatProduct":
+                $res = $this->dh->creatProduct($param);
+                break;
+            case "updateProduct":
+                $res = $this->dh->updateProduct($param);
+                break; 
             default:
                 $res = "NI";
                 break;
         }
         return $res;
-    }
+    } 
 }

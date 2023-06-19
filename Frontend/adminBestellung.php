@@ -39,6 +39,6 @@
 
 <?php include 'footer.php'; ?>
   
-<script src="bestellung.js" type="text/javascript"></script>
+<script src="adminBestellung.js" type="text/javascript"></script>
 </body>
 </html>

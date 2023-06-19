@@ -6,13 +6,40 @@ $(document).ready(function(){
     
     ajaxHandler("getIDBestellungundProdukt", id, displayBestellung);
     
-    //$("#myTable").on("click", ".btn-secondary", function(){
-        //console.log("click");
-        //var id = $(this).closest("tr").attr("id");
-        //location.replace("./bestellung.php?id="+id);
-    //});
+    $("#myTable").on("click", ".btn-secondary", function(){
+        console.log("click");
+        var id2 = this.parentNode.id;
+        console.log(id2);
+        editBestellung(id2, id);
+    });
     
     })
+
+    function editBestellung(pr_id, r_id){
+        let anzahlId = "anzahl"+pr_id;
+        console.log(anzahlId)
+        let anzahl = document.getElementById(anzahlId).value;
+        let data ={
+            "pr_id": pr_id,
+            "r_id": r_id,
+            "anzahl": anzahl
+        };
+        if(anzahl <= 0){
+            ajaxHandler("deletProduktBestellung",data,function(response){
+                $("#myTable").hide();
+                $("#myTable").empty();
+                displayBestellung(response);
+                $("#myTable").show();
+            });
+        }else{
+            ajaxHandler("editProduktBestellung",data,function(response){
+                $("#myTable").hide();
+                $("#myTable").empty();
+                displayBestellung(response);
+                $("#myTable").show();
+            });
+        }
+    }
     
     function displayBestellung(bestellung){
     console.log(bestellung);
@@ -24,15 +51,19 @@ $(document).ready(function(){
         +element.p_id+
         "'><td style='text-align:center;'>"
         +element.p_id+
-        "</th><td>"
+        "</td><td>"
         +element.title+
-        "</th><td>"
+        "</td></td><td><input id = 'anzahl"
+        +element.p_id+
+        "' type = 'number' required value='"
         +element.anzahl+
-        "</th><td>"
+        "'></td><td>"
         +element.preis+
-        "€</th><td>"
+        "€</td><td>"
         + insgesamtPreis+
-        "€</th><td><button id = 'edit' class='btn btn-secondary'>edit</button></td></tr>");
+        "€</td><td id ='"
+        +element.p_id+
+        "'><button id = 'edit' class='btn btn-secondary'>edit</button></td></tr>");
     });
     BestellungsPreis = BestellungsPreis.toFixed(2);
     $("#myTable").append("<tr><td style='text-align:center;'></th><td></th><td></th><td>Preis Insgesamt: </th><td>"

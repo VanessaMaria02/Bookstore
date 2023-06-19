@@ -9,7 +9,7 @@ ajaxHandler("getIDBestellungen", id, displayBestellungen);
 $("#myTable").on("click", ".btn-secondary", function(){
     console.log("click");
     var id = $(this).closest("tr").attr("id");
-    location.replace("./bestellung.php?id="+id);
+    location.replace("./adminBestellung.php?id="+id);
 });
 
 $("#submit").click(function(){
