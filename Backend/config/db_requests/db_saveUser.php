@@ -2,7 +2,6 @@
 if(true){
     require_once('dbacess.php');
 
-    //$userData = json_decode($param, true);
     $anrede = $param['anrede'];
     $vname = $param['vname'];
     $nname = $param['nname'];
@@ -20,22 +19,6 @@ if(true){
         exit();
     }
 
-
-    if(!preg_match("/^[a-zA-Z]+$/",$vname)){
-        header("location: ../../../Frontend/registrierung.php?error=ungültiger Vorname");
-        exit();
-    }
-
-    if(!preg_match("/^[a-zA-Z]+$/",$nname)){
-        header("location: registrierung.php?error=ungültiger Nachname");
-        exit();
-    }
-
-    if(!preg_match("/^[a-zA-Z]+$/",$ort)){
-       header("location: registrierung.php?error=ungültiger Ort");
-       exit();
-    }
-
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         header("location: registrierung.php?error=ungültige Email");
         exit();
@@ -51,7 +34,7 @@ if(true){
         exit();
     }
 
-    if($password!==$password2){
+    if($password!=$password2){
         header("location: registrierung.php?error=Passwort stimmt nicht überein");
         exit();
     }
@@ -106,11 +89,20 @@ if(true){
     }
     $stmt->bind_param("issssiss",$zeile['u_id'], $vname, $nname, $anrede, $adresse, $plz, $ort, $email);
 
-    $stmt->execute();
-    $stmt->close();
-    $db->close();
     
-
-    $res = $param;
+   
+    
+    if($stmt->execute()){
+        $stmt->close();
+        $sql = "SELECT * FROM user JOIN personen ON user.u_id = personen.u_id WHERE user.u_id = ?";
+        $state = $db->prepare($sql);
+        $state->bind_param("i", $zeile['u_id']);
+        $state->execute();
+        $res = $state->get_result();
+        $state->close();
+        $db->close();
+    }
+  
+   
 }
 ?>

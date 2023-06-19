@@ -23,7 +23,6 @@ if (isset($_GET['success'])) {
   </div>";
 }
 ?>
-<Form method="post" class="row g-3">
 <section>
   <div class="container py-5 h-100">
   <div class="row d-flex justify-content-center align-items-center h-100">
@@ -63,7 +62,6 @@ if (isset($_GET['success'])) {
 </div>
 </div>
 </section>
-</Form>
     
     <?php include 'footer.php'; ?>
     <script src="login.js"  type="text/javascript"></script>

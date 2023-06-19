@@ -22,8 +22,8 @@
   }
 ?>
 
-<form method="post">     
-<section class>
+    
+<section>
             <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -79,7 +79,7 @@
                 <input type="password" id="ps2" name="psSec" placeholder="Passwort" required minlength="8" class="form-control form-control-lg" />
               </div>
 
-              <button class="btn btn-outline-light btn-lg px-5" id="submit" value="Send" name="signUp">Registrieren</button>
+              <button type = "submit" class="btn btn-outline-light btn-lg px-5" id="submit" value="Send" name="signUp">Registrieren</button>
             </div>
 
 
@@ -89,7 +89,7 @@
           </div>
           </div>
        </section>
-       </form>
+      
 
        <?php include 'footer.php'; ?>
 

@@ -41,6 +41,15 @@ class Logic{
             case "getIDBestellungen":
                 $res = $this->dh->getIDBestellungen($param);
                 break;
+            case "getIDBestellungundProdukt":
+                $res = $this->dh->getIDBestellungundProdukt($param);
+                break;
+            case "getIDUserPerson":
+                $res = $this->dh->getIDUserPerson($param);
+                break;
+            case "UpdateUser":
+                $res = $this->dh->UpdateUser($param);
+                break;
             default:
                 $res = "NI";
                 break;

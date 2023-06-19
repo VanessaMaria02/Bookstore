@@ -35,7 +35,6 @@ function saveUser(){
         "password2": password2
     };
 
-    console.log(userData);
     ajaxHandler("saveUser", userData, function(response){
         console.log(response);
         location.replace("./login.php?success=");
@@ -45,22 +44,21 @@ function saveUser(){
 
 }
 
-function ajaxHandler(method, param, nextFunc = () => {})
-{
+function ajaxHandler(method, searchterm, nextFunc = ()=>{}){
+
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "../Backend/serviceHandler.php",
-        data: {method: method, param: param},
+        cache: false,
+        data:{method: method, param: searchterm},
         dataType: "json",
-        success: function (response) 
-        {
+        success: function(response){
             console.log(response);
             nextFunc(response);
         },
-        error: function(xhr)
-        {
+        error: function(xhr){
             console.log(xhr);
-            alert('Ein Fehler ist Aufgetreten!'+xhr);
+            alert('Error, ein Problem ist aufgetreten: '+xhr.responseText);
         }
     });
 }

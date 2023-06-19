@@ -1,6 +1,9 @@
 <?php
 class Person
 {
+    public $u_id;
+    public $uname;
+    public $u_role;
     public $anrede;
     public $vname;
     public $nname;
@@ -8,10 +11,12 @@ class Person
     public $plz;
     public $ort;
     public $email;
-    public $uname;
 
-    function __construct($anrede, $vname, $nname, $adresse, $plz, $ort, $email, $uname)
+    function __construct($u_id, $uname, $u_role, $anrede, $vname, $nname, $adresse, $plz, $ort, $email)
     {
+        $this->u_id = $u_id;
+        $this->uname = $uname;
+        $this->u_role = $u_role;
         $this->anrede= $anrede;
         $this->vname = $vname;
         $this->nname = $nname;
@@ -19,7 +24,7 @@ class Person
         $this->plz = $plz;
         $this->ort = $ort;
         $this->email = $email;
-        $this->uname = $uname;
+        
     }
 }
 ?>
