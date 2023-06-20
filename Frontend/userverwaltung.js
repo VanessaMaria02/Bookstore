@@ -6,6 +6,13 @@ $(document).ready(function(){
         var id = $(this).closest("tr").attr("id");
         location.replace("./person.php?id="+id);
     });
+
+    $("#seachfield").on("input", function(e){
+        $("#myTable").hide();
+        $("#myTable").empty();
+        ajaxHandler("AllUserName", $("#seachfield").val(), displayUser);
+        $("#myTable").show();
+    });
 })
 
 function displayUser(users){

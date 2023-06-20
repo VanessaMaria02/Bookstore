@@ -16,6 +16,7 @@
 <div class ="p-4 container mt-5 table-responsive fancyFont">
 
             <h3 class="d-inline">Alle Nutzer*innen</h3>
+            <input type="text" class="form-control" id="seachfield" placeholder="Search via username">
             <table class="table table-striped">
             <thead>
                 <tr>
