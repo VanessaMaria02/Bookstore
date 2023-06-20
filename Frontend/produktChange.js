@@ -6,7 +6,7 @@ $(document).ready(function(){
         changeProduct();
     });
 
-    ajaxHandler("getProductbyID", id, displayProduct);
+    ajaxHandler("getIDProductVW", id, displayProduct);
     ajaxHandler("getAllCategories", "", displayKategorien);
 })
 
@@ -73,7 +73,7 @@ function ajaxHandler(method, searchterm, nextFunc = ()=>{}){
         },
         error: function(xhr){
             console.log(xhr);
-            alert('Error, ein Problem ist aufgetreten: '+xhr.responseText);
+            alert('Error, ein Problem ist aufgetreten überprüfen Sie ihre Eingaben'+xhr.responseText);
         }
     });
 }

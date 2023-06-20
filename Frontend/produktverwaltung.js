@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    ajaxHandler("getAllProducts", "", displayProducts);
+    ajaxHandler("getAllProductsVW", "", displayProducts);
 
     $('#addButton').click(function() {
         location.replace("./produkthinzufügen.php");

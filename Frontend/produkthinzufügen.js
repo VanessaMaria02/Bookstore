@@ -62,7 +62,7 @@ function ajaxHandlerGET(method, searchterm, nextFunc = ()=>{}){
         },
         error: function(xhr){
             console.log(xhr);
-            alert('Error, ein Problem ist aufgetreten: '+xhr.responseText);
+            alert('Error, ein Problem ist aufgetreten überprüfen Sie ihre Eingaben'+xhr.responseText);
         }
     });
 }

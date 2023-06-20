@@ -18,6 +18,21 @@ class DataHandler{
                 $line["pr_id"],
                 $line["pr_title"],
                 $line["pr_bild"],
+                $line["pr_preis"]
+            ));
+        }
+        return $result;
+    }
+
+    public function getAllProductsVW(){
+        require("db_getAllProducts.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new Product(
+                $line["pr_id"],
+                $line["pr_title"],
+                $line["pr_bild"],
                 $line["pr_preis"],
                 $line["k_id"],
                 $line["pr_autor"],
@@ -92,7 +107,7 @@ class DataHandler{
 
     
 
-    public function  UpdateUser($param){
+    public function UpdateUser($param){
         require("db_UpdateUser.php");
         $result = array();
         foreach ($res as $line)
@@ -224,6 +239,21 @@ class DataHandler{
     }
 
     public function  getIDProduct($param){
+        require("db_getIDProducts.php");
+        $result = array();
+        foreach ($res as $line)
+        {
+            array_push($result, new Product(
+                $line["pr_id"],
+                $line["pr_title"],
+                $line["pr_bild"],
+                $line["pr_preis"]
+            ));
+        }
+        return $result;
+    }
+
+    public function  getIDProductVW($param){
         require("db_getIDProducts.php");
         $result = array();
         foreach ($res as $line)

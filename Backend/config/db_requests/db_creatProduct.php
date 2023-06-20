@@ -12,7 +12,6 @@ if(true){
     $sql = "INSERT INTO produkte(k_id, pr_title, pr_bild, pr_preis, pr_beschreibung, pr_autor) VALUES (?, ?, ?, ?, ?, ?)";
     if (!$stmt = $db->prepare($sql))
     {
-        header("location: produkthinzufügen.php?error=error");
         exit();
     }
     $stmt->bind_param("issdss",$kategorieID, $titel, $bildername, $preis, $beschreibung, $autor);

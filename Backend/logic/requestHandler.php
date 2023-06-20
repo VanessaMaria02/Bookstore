@@ -14,6 +14,9 @@ class Logic{
             case "getAllProducts":
                 $res = $this->dh->getAllProducts();
                 break;
+            case "getAllProductsVW":
+                $res = $this->dh->getAllProductsVW();
+                break;
             case "queryBookTitle":
                 $res = $this->dh->getTitleProducts($param);
                 break;
@@ -22,6 +25,9 @@ class Logic{
                 break;
             case "getProductbyID":
                 $res = $this->dh->getIDProduct($param);
+                break;
+            case "getIDProductVW":
+                $res = $this->dh->getIDProductVW($param);
                 break;
             case "login":
                 $res = $this->dh->login($param);
