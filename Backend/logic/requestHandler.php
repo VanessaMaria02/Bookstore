@@ -56,11 +56,9 @@ class Logic{
             case "UpdateUser":
                 $res = $this->dh->UpdateUser($param);
                 break;
-<<<<<<< HEAD
             case "updateUser": // New case to handle updateUser method
-                    $res = $this->dh->updateUser($param);
+                $res = $this->dh->updateUser($param);
                 break;
-=======
             case "editProduktBestellung":
                 $res = $this->dh->editProduktBestellung($param);
                 break;
@@ -76,7 +74,6 @@ class Logic{
             case "updateProduct":
                 $res = $this->dh->updateProduct($param);
                 break; 
->>>>>>> a719bdb45b7391e1458fb7f4ae2b48fdd9ff4d17
             default:
                 $res = "NI";
                 break;
