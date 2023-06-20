@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Mai 2023 um 22:53
+-- Erstellungszeit: 20. Jun 2023 um 01:02
 -- Server-Version: 10.4.25-MariaDB
 -- PHP-Version: 8.1.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `buchhaus`
 --
+CREATE DATABASE IF NOT EXISTS `buchhaus` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `buchhaus`;
 
 -- --------------------------------------------------------
 
@@ -34,6 +36,15 @@ CREATE TABLE `bestellungen` (
   `b_anzahl` int(11) NOT NULL,
   `b_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `bestellungen`
+--
+
+INSERT INTO `bestellungen` (`b_id`, `u_id`, `pr_id`, `b_anzahl`, `b_timestamp`) VALUES
+(4, 41, 1, 1, '2023-06-19 10:26:19'),
+(5, 41, 5, 2, '2023-06-19 10:26:19'),
+(8, 41, 10, 1, '2023-06-19 10:26:19');
 
 -- --------------------------------------------------------
 
@@ -90,12 +101,29 @@ CREATE TABLE `personen` (
   `u_id` int(11) NOT NULL,
   `p_vorname` varchar(50) NOT NULL,
   `p_nachname` varchar(50) NOT NULL,
-  `p_anrede` enum('Frau','Herr','Divers') NOT NULL,
+  `p_anrede` varchar(40) NOT NULL,
   `p_adresse` varchar(255) NOT NULL,
   `p_plz` int(11) NOT NULL,
   `p_ort` varchar(50) NOT NULL,
   `p_email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `personen`
+--
+
+INSERT INTO `personen` (`p_id`, `u_id`, `p_vorname`, `p_nachname`, `p_anrede`, `p_adresse`, `p_plz`, `p_ort`, `p_email`) VALUES
+(28, 40, 'Vanessa', 'Fichtinger', 'Frau', 'Tellgasse', 1150, 'Wien', 'VFichtinger02@gmail.com'),
+(29, 41, 'Admin', 'Admin', 'Divers', 'Admin', 1111, 'Admin', 'admin@gmail.com'),
+(30, 42, 'Florian', 'Poppinger', 'Frau', 'tellgasse', 1111, 'Wien', 'vanessa.fichtinger@gmail.com'),
+(31, 43, 'Vanessa', 'Fichtinger', 'Frau', 'Tellgasse', 1150, 'Wien', 'VFichtinger02@gmail.com'),
+(32, 44, 'Test', 'Test', 'Frau', 'Test', 1111, 'Test', 'Test@gmail.com'),
+(33, 45, 'saveUser', 'saveUser', 'Frau', 'saveUser', 2222, 'saveUser', 'saveUser@gmail.com'),
+(34, 46, 'Florian', 'Poppinger', 'Frau', 'tellgasse', 1111, 'Wien', 'vanessa.fichtinger@gmail.com'),
+(35, 47, 'Florian', 'Poppinger', 'Divers', 'tellgasse', 2222, 'Wien', 'vanessa.fichtinger@gmail.com'),
+(36, 48, 'Florian', 'Poppinger', 'Frau', 'tellgasse', 11111, 'Wien', 'vanessa.fichtinger@gmail.com'),
+(37, 49, 'Florian', 'Poppinger', 'Frau', 'tellgasse', 1111, 'Wien', 'vanessa.fichtinger@gmail.com'),
+(38, 50, 'Sammy', 'Dobby', 'Herr', 'Tellgasse', 1150, 'Wien', 'Germkoendel@tierquatier.com');
 
 -- --------------------------------------------------------
 
@@ -135,7 +163,8 @@ INSERT INTO `produkte` (`pr_id`, `k_id`, `pr_title`, `pr_bild`, `pr_preis`, `pr_
 (18, 6, 'Spy x Family – Band 1', 'spyFamily.jpg', 7.9, 'Sein Name ist Forger. Loid Forger. Deckname: Twilight. Der Auftrag: „Finde eine Familie als Tarnung. Infiltriere die beruehmte Eden-Akademie. Verhindere den drohenden Krieg zwischen Ost und West!“ Was er nicht ahnt: Seine Adoptivtochter kann Gedanken lesen und seine frisch gebackene Ehefrau ist eine Auftragskillerin …?! Uff, diese Familie zu organisieren, ist eine andere Hausnummer als Terrorabwehr und Atombombenentschärfung!', 'Tatsuya Endo'),
 (19, 7, 'Todesurteil / Maarten S. Sneijder Bd.2', 'todesurteil.jpg', 10.9, 'In Wien verschwindet die zehnjaehrige Clara. Ein Jahr spaeter taucht sie voellig verstoert am nahen Waldrand wieder auf. Ihr gesamter Ruecken ist mit Motiven aus Dantes \"Inferno\" taetowiert – und sie spricht kein Wort. Indessen nimmt der niederlaendische Profiler Maarten S. Sneijder an der Akademie des BKA fuer hochbegabten Nachwuchs mit seinen Studenten ungeloeste Mordfaelle durch. Seine beste Schuelerin Sabine Nemez entdeckt einen Zusammenhang zwischen mehreren Faellen – aber das Werk des raffinierten Killers ist noch lange nicht beendet. Seine Spur fuehrt nach Wien – wo Clara die einzige ist, die den Moerder je zu Gesicht bekommen hat … Der zweite Fall für Sneijder und Nemez.', 'Andreas Gruber'),
 (20, 7, 'Playlist', 'playlist.jpg', 13, 'Musik ist ihr Leben. 15 Songs entscheiden, wie lange es noch dauert. Vor einem Monat verschwand die 15-jaehrige Feline Jagow spurlos auf dem Weg zur Schule. Von ihrer Mutter beauftragt, stoeßt Privatermittler Alexander Zorbach auf einen Musikdienst im Internet, ueber den Feline immer ihre Lieblingssongs hoerte. Das Erstaunliche: Vor wenigen Tagen wurde die Playlist veraendert. Sendet Feline mit der Auswahl der Songs einen versteckten Hinweis, wohin sie verschleppt wurde und wie sie gerettet werden kann? Fieberhaft versucht Zorbach das Raetsel der Playlist zu entschluesseln. Ahnungslos, dass ihn die Suche nach Feline und die Loesung des Raetsels der Playlist in einen grauenhaften Albtraum stuerzen wird. Ein gnadenloser Wettlauf gegen die Zeit, bei dem die UEberlebenschancen aller Beteiligten gegen Null gehen ...', 'Sebastian Fitzek'),
-(21, 7, 'Der Insasse', 'insasse.jpg', 12.9, 'Zwei entsetzliche Kindermorde hat er bereits gestanden und die Berliner Polizei zu den grausam entstellten Leichen gefuehrt. Doch jetzt schweigt Guido T., der im Hochsicherheitstrakt der Psychiatrie einsitzt, auf Anraten seiner Anwaeltin. Die Polizei ist sicher: Er ist auch der Entfuehrer des sechsjaehrigen Max, der seit einem Jahr spurlos verschwunden ist. Die Ermittler haben jedoch keine belastbaren Beweise, nur Indizien. Und ohne die Aussage des Häftlings werden Maxs Eltern keine Gewissheit haben und niemals Abschied von ihrem Sohn nehmen koennen. Monate nach dem Verschwinden von Max macht ein Ermittler der Mord-Kommission dem verzweifelten Vater ein unglaubliches Angebot: Er schleust ihn in das psychiatrische Gefaengnis-Krankenhaus ein, in dessen Hochsicherheitstrakt Guido T. eingesperrt ist. Als falscher Patient, ausgestattet mit einer fingierten Krankenakte. Damit er dem Kindermoerder so nahe wie nur irgend moeglich ist und ihn zu einem Gestaendnis zwingen kann. Denn nichts ist s', 'Sebastian Fitzek');
+(21, 7, 'Der Insasse', 'insasse.jpg', 12.9, 'Zwei entsetzliche Kindermorde hat er bereits gestanden und die Berliner Polizei zu den grausam entstellten Leichen gefuehrt. Doch jetzt schweigt Guido T., der im Hochsicherheitstrakt der Psychiatrie einsitzt, auf Anraten seiner Anwaeltin. Die Polizei ist sicher: Er ist auch der Entfuehrer des sechsjaehrigen Max, der seit einem Jahr spurlos verschwunden ist. Die Ermittler haben jedoch keine belastbaren Beweise, nur Indizien. Und ohne die Aussage des Häftlings werden Maxs Eltern keine Gewissheit haben und niemals Abschied von ihrem Sohn nehmen koennen. Monate nach dem Verschwinden von Max macht ein Ermittler der Mord-Kommission dem verzweifelten Vater ein unglaubliches Angebot: Er schleust ihn in das psychiatrische Gefaengnis-Krankenhaus ein, in dessen Hochsicherheitstrakt Guido T. eingesperrt ist. Als falscher Patient, ausgestattet mit einer fingierten Krankenakte. Damit er dem Kindermoerder so nahe wie nur irgend moeglich ist und ihn zu einem Gestaendnis zwingen kann. Denn nichts ist s', 'Sebastian Fitzek'),
+(24, 7, 'Sammy', 'sammy.jpeg', 666, 'Die Reise von Germknoedel in sein neues Zuhause.', 'Tierquatier Wien');
 
 -- --------------------------------------------------------
 
@@ -149,6 +178,14 @@ CREATE TABLE `rechnungen` (
   `b_timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Daten für Tabelle `rechnungen`
+--
+
+INSERT INTO `rechnungen` (`r_id`, `u_id`, `b_timestamp`) VALUES
+(1, 41, '2023-06-19 10:26:19'),
+(2, 50, '2023-06-19 21:31:18');
+
 -- --------------------------------------------------------
 
 --
@@ -158,8 +195,38 @@ CREATE TABLE `rechnungen` (
 CREATE TABLE `user` (
   `u_id` int(11) NOT NULL,
   `u_username` varchar(50) NOT NULL,
-  `u_password` varchar(50) NOT NULL,
+  `u_password` varchar(255) NOT NULL,
   `u_role` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `user`
+--
+
+INSERT INTO `user` (`u_id`, `u_username`, `u_password`, `u_role`) VALUES
+(40, 'Vanessa', 'VanDan02', 0),
+(41, 'Admin', 'Admin123', 1),
+(42, 'FloberPoP', '12345678', 0),
+(43, 'VanessaMaria', 'VanDan02', 0),
+(44, 'Test', 'Test1234', 0),
+(45, 'saveUser', 'saveUser', 0),
+(46, 'Test2', '123456789', 0),
+(47, 'Vanessa2', '123456789', 0),
+(48, 'FloberPoP2', '123456789', 2),
+(49, 'Vanessa3', 'VanDan02', 0),
+(50, 'Sammyknoedel', 'Sammy123', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `warenkorb`
+--
+
+CREATE TABLE `warenkorb` (
+  `w_id` varchar(255) NOT NULL,
+  `pr_id` int(11) NOT NULL,
+  `w_anzahl` int(11) NOT NULL,
+  `u_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -171,9 +238,9 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `bestellungen`
   ADD PRIMARY KEY (`b_id`),
-  ADD UNIQUE KEY `u_id` (`u_id`),
-  ADD UNIQUE KEY `pr_id` (`pr_id`),
-  ADD KEY `b_timestamp` (`b_timestamp`);
+  ADD KEY `b_timestamp` (`b_timestamp`),
+  ADD KEY `u_id` (`u_id`) USING BTREE,
+  ADD KEY `pr_id` (`pr_id`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `gutscheine`
@@ -194,7 +261,7 @@ ALTER TABLE `kategorien`
 --
 ALTER TABLE `personen`
   ADD PRIMARY KEY (`p_id`),
-  ADD KEY `u_id` (`u_id`);
+  ADD UNIQUE KEY `u_id` (`u_id`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `produkte`
@@ -221,6 +288,14 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `u_username` (`u_username`);
 
 --
+-- Indizes für die Tabelle `warenkorb`
+--
+ALTER TABLE `warenkorb`
+  ADD PRIMARY KEY (`w_id`),
+  ADD KEY `pr_id` (`pr_id`),
+  ADD KEY `u_id` (`u_id`);
+
+--
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -228,7 +303,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `bestellungen`
 --
 ALTER TABLE `bestellungen`
-  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `gutscheine`
@@ -246,25 +321,25 @@ ALTER TABLE `kategorien`
 -- AUTO_INCREMENT für Tabelle `personen`
 --
 ALTER TABLE `personen`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT für Tabelle `produkte`
 --
 ALTER TABLE `produkte`
-  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT für Tabelle `rechnungen`
 --
 ALTER TABLE `rechnungen`
-  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Constraints der exportierten Tabellen
@@ -293,8 +368,14 @@ ALTER TABLE `produkte`
 -- Constraints der Tabelle `rechnungen`
 --
 ALTER TABLE `rechnungen`
-  ADD CONSTRAINT `rechnungen_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `rechnungen_ibfk_2` FOREIGN KEY (`b_timestamp`) REFERENCES `bestellungen` (`b_timestamp`);
+  ADD CONSTRAINT `rechnungen_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints der Tabelle `warenkorb`
+--
+ALTER TABLE `warenkorb`
+  ADD CONSTRAINT `warenkorb_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `produkte` (`pr_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `warenkorb_ibfk_2` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

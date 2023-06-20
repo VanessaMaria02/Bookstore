@@ -6,6 +6,7 @@ $(document).ready(function() {
 
 });
 
+//wenn die anzahl eines produkt verändert wird, wird diese Funktion aufgerufen
 function changeAnzahl(){
     var productId = this.parentNode.id;
     var anzahl = this.value;

@@ -9,7 +9,7 @@ ajaxHandler("getIDBestellungen", id, displayBestellungen);
 $("#myTable").on("click", ".btn-secondary", function(){
     console.log("click");
     var id = $(this).closest("tr").attr("id");
-    location.replace("./bestellung.php?id="+id);
+    location.replace("./adminBestellung.php?id="+id);
 });
 
 $("#submit").click(function(){
@@ -119,7 +119,7 @@ function ajaxHandler(method, searchterm, nextFunc = ()=>{}){
         },
         error: function(xhr){
             console.log(xhr);
-            alert('Error, ein Problem ist aufgetreten: '+xhr.responseText);
+            alert('Error, ein Problem ist aufgetreten überprüfen Sie ihre Eingaben'+xhr.responseText);
         }
     });
 }

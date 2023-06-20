@@ -14,6 +14,9 @@ class Logic{
             case "getAllProducts":
                 $res = $this->dh->getAllProducts();
                 break;
+            case "getAllProductsVW":
+                $res = $this->dh->getAllProductsVW();
+                break;
             case "queryBookTitle":
                 $res = $this->dh->getTitleProducts($param);
                 break;
@@ -22,6 +25,9 @@ class Logic{
                 break;
             case "getProductbyID":
                 $res = $this->dh->getIDProduct($param);
+                break;
+            case "getIDProductVW":
+                $res = $this->dh->getIDProductVW($param);
                 break;
             case "login":
                 $res = $this->dh->login($param);
@@ -50,10 +56,29 @@ class Logic{
             case "UpdateUser":
                 $res = $this->dh->UpdateUser($param);
                 break;
+            case "updateUser": // New case to handle updateUser method
+                $res = $this->dh->updateUser($param);
+                break;
+            case "editProduktBestellung":
+                $res = $this->dh->editProduktBestellung($param);
+                break;
+            case "deletProduktBestellung":
+                $res = $this->dh->deletProduktBestellung($param);
+                break;
+            case "getAllCategories":
+                $res = $this->dh->getAllCategories($param);
+                break;
+            case "creatProduct":
+                $res = $this->dh->creatProduct($param);
+                break;
+            case "updateProduct":
+                $res = $this->dh->updateProduct($param);
+                break; 
             default:
                 $res = "NI";
                 break;
+        
         }
         return $res;
-    }
+    } 
 }
