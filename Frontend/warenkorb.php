@@ -14,10 +14,11 @@
 
 <div class="container">
     <div class="row" id= "produkteWarenkorb">
-        
-        
     </div>
+  <button type="submit" class="btn btn-primary" id="produkteBestellen">Jetzt bestellen</button>
 </div>
 
 <script src="warenkorb.js" type="text/javascript"></script>
+<script src="userBestellung.js" type="text/javascript"></script>
+
 </body>

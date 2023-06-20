@@ -20,7 +20,7 @@ function getUserRoleCookie(){
        setNavbar(emptyUserDaten);
        
     }
-}
+} 
 
 function setNavbar(userDaten){
     let uname;
@@ -34,7 +34,7 @@ function setNavbar(userDaten){
         $("#navbar").append('<li class="nav-item"><a class="nav-link" href="produktVerwaltung.php">Produkte verwalten</a></li><li class="nav-item"><a class="nav-link" href="userverwaltung.php">Userverwaltung</a></li><li class="nav-item"><a class="nav-link" href="gutscheine.php">Gutscheine verwalten</a></li><li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
         $("nav").append(" <p class='fs-6 text-end'> Willkommen, "+uname+" </p>");
     }else if(role === "user"){
-        $("#navbar").append('<li class="nav-item"><a class="nav-link" href="produkte.php">Produkte</a></li><li class="nav-item"><a class="nav-link" href="userbestellungen.php">Bestellungen</a></li><li class="nav-item"><a class="nav-link" href="meinKonto.php">Mein Konto</a></li><li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
+        $("#navbar").append('<li class="nav-item"><a class="nav-link" href="produkte.php">Produkte</a></li><li class="nav-item"><a class="nav-link" href="userBestellungÜbersicht.php">Bestellungen</a></li><li class="nav-item"><a class="nav-link" href="meinKonto.php">Mein Konto</a></li><li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
         $("nav").append(" <p class='fs-6 text-end'> Willkommen, "+uname+" </p>");
     }else{
         $("#navbar").append('<li class="nav-item"><a class="nav-link" href="produkte.php">Produkte</a></li><li class="nav-item"><a class="nav-link" href="registrierung.php">Registrierung</a></li><li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>');
