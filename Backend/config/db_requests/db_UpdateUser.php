@@ -2,17 +2,17 @@
 if(true){
     require_once('dbacess.php');
 
-    $u_id = $param['id'];
-    $uname = $param['uname'];
-    $anrede = $param['anrede'];
-    $vorname = $param['vorname'];
-    $nachname = $param['nachname'];
-    $adresse = $param['adresse'];
-    $plz = $param['plz'];
-    $ort = $param['ort'];
-    $email = $param['email'];
-    $urole = $param['urole'];
-    $password = $param['password'];
+    $u_id = $_POST['id'];
+    $uname = $_POST['uname'];
+    $anrede = $_POST['anrede'];
+    $vorname = $_POST['vorname'];
+    $nachname = $_POST['nachname'];
+    $adresse = $_POST['adresse'];
+    $plz = $_POST['plz'];
+    $ort = $_POST['ort'];
+    $email = $_POST['email'];
+    $urole = $_POST['urole'];
+    $password = $_POST['password'];
 
 
      //Daten mit php überprüfen 

@@ -50,9 +50,13 @@ class Logic{
             case "UpdateUser":
                 $res = $this->dh->UpdateUser($param);
                 break;
+            case "updateUser": // New case to handle updateUser method
+                    $res = $this->dh->updateUser($param);
+                break;
             default:
                 $res = "NI";
                 break;
+        
         }
         return $res;
     }

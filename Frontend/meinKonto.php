@@ -1,64 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php
-include ("navbar.php");
-?>
-  <title>Mein Konto</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="meinKonto.js"></script>
+    <title>Mein Konto</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<?php include 'navbar.php'; ?>
+    
+<section>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-2 text-uppercase">Daten bearbeiten</h2>
+                            <p class="text-white-50 mb-5"></p>
+                            <form id="updateForm">
+                                <div class="form-outline form-white mb-4">
+                                    <select id="anrede" name="anrede" required autofocus class="form-control form-control-lg">
+                                        <option value="Frau">Frau</option>
+                                        <option value="Herr">Herr</option>
+                                        <option value="Divers">Divers</option>
+                                    </select>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" id="vname" name="vname" class="form-control form-control-lg" placeholder="Vorname" required/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" id="nname" name="nname" required class="form-control form-control-lg" placeholder="Nachname"/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" name="adresse" id="adresse" class="form-control form-control-lg" placeholder="Adresse" required/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="number" name="plz" id="plz" class="form-control form-control-lg" placeholder="Plz" required/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" name="ort" id="ort" class="form-control form-control-lg" placeholder="Ort" required/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input id="email" name="email" type="email" required class="form-control form-control-lg" placeholder="E-mail"/>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" name="uname" id="username" class="form-control form-control-lg" placeholder="Username" required/>
+                              
+                                <button type="submit" class="btn btn-outline-light btn-lg px-5" id="updateButton" name="update">Update</button>
+                            </form>
+                            
+                            <form>
+
+                            <h1>Password ändern</h1>
+                        <form id="changePasswordForm" action="" method="POST">
+                            <label for="oldPassword">Ältes Password:</label>
+                            <input type="password" id="oldPassword" name="oldPassword" required><br>
+                            <label for="newPassword">Neues Password:</label>
+                            <input type="password" id="newPassword" name="newPassword" required><br>
+                            <label for="confirmPassword">Confirm Password:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+                            <button type="submit">Password ändern</button>
+
+                        </form>
+
+                      <body>
+                          <h1>Bestellungen und Rechnungen</h1>
   
-  <h2>Stammdaten bearbeiten</h2>
-  <div id="stammdaten">
-  <form id="passwortForm">
-    <label for="u_username">Benutzername:</label>
-    <input type="text" id="u_username" name="u_username" required><br>
-    
-    <label for="oldPassword">Altes Passwort:</label>
-    <input type="password" id="oldPassword" name="oldPassword" required><br>
-    
-    <label for="newPassword">Neues Passwort:</label>
-    <input type="password" id="newPassword" name="newPassword" required><br>
-    
-    <label for="confirmPassword">Passwort bestätigen:</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" required><br>
-    
-    <button type="submit">Passwort ändern</button>
-  </form>
+                        <h2>Bestellungen</h2>
+                        <button id="bestellungenBtn">Bestellungen anzeigen</button>
+                        <div id="bestellungenErgebnis"></div>
   
-  <h2>Zahlungsmöglichkeiten</h2>
-  <form action="add_payment.php" method="post">
-    <label for="payment">Neue Zahlungsmöglichkeit hinzufügen:</label>
-    <input type="text" id="payment" name="payment"><br><br>
-
-    <input type="submit" value="Zahlungsmöglichkeit hinzufügen">
-  </form>
-  
-  <h2>Bestellungen</h2>
-  <select id="sort">
-    <option value="ascending"></option>
-    <option value="descending">Absteigend</option>
-  </select>
-  <button onclick="sortOrders()">Sortieren</button><br><br>
-
-  <ul id="orderList">
-    <li>
-      <strong>Bestellung #12345</strong>
-      <button onclick="printInvoice(12345)">Rechnung drucken</button><br>
-      Datum: 2023-06-10<br>
-      Details: Lorem ipsum dolor sit amet<br>
-    </li>
-    <li>
-      <strong>Bestellung #67890</strong>
-      <button onclick="printInvoice(67890)">Rechnung drucken</button><br>
-      Datum: 2023-06-05<br>
-      Details: Consectetur adipiscing elit<br>
-    </li>
-  </ul>
+                        <h2>Rechnung generieren</h2>
+                        <label for="bestellungsId">Bestellungs-ID:</label>
+                        <input type="text" id="bestellungsId" />
+                        <button id="rechnungBtn">Rechnungen</button>
+                        <div id="rechnungErgebnis"></div>
+                      </body>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-  <?php include 'footer.php'; ?>
+
+<script src="meinKonto.js"></script>
+
 </body>
 </html>
