@@ -15,6 +15,8 @@
 <div class="container">
     <div class="row" id= "produkteWarenkorb">
     </div>
+<p id="gesamtkosten">Gesamt Kosten: </p>
+
   <button type="submit" class="btn btn-primary" id="produkteBestellen">Jetzt bestellen</button>
 </div>
 

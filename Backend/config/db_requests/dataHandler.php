@@ -7,6 +7,7 @@ include("bestellungen.php");
 include("rechnung.php");
 include("bestellungProdukt.php");
 include("kategorie.php");
+include("userBestellung.php");
 class DataHandler{
 
     public function getAllProducts(){
@@ -340,5 +341,29 @@ class DataHandler{
         return $result;
         }
 
+        public function insertBestellung($param){
+            require("db_insertBestellung.php");
+            $result = array();
+            foreach ($res as $line)
+            {
+                array_push($result, new userBestellung(
+                    $line["u_id"],
+                    $line["b_timestamp"]
+                ));
+            }
+            return $result;
+        }
+        public function insertRechnungen($param){
+            require("db_insertRechnungen.php");
+            $result = array();
+            foreach ($res as $line)
+            {
+                array_push($result, new userBestellung(
+                    $line["u_id"],
+                    $line["b_timestamp"]
+                ));
+            }
+            return $result;
+        }
         
 }

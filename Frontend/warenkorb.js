@@ -102,6 +102,8 @@ function displayprodukte(){
     console.log(uniqueProducts);
     console.log(productCounts);
 
+    var gesamtpreis = 0;
+
     for(var i = 0; i < uniqueProducts.length; i++){
         var innerArray2 = uniqueProducts[i];
         console.log(innerArray2);
@@ -119,8 +121,11 @@ function displayprodukte(){
             +'€'+ ' <button id = "remove">X</button>'
             +'</p>' 
             );
+            gesamtpreis+=productpreis;
         }
     }
+    console.log(gesamtpreis)
+    $("#gesamtkosten").append("<p>"+gesamtpreis+"</p>");
 
         
        

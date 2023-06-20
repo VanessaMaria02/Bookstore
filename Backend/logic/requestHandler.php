@@ -73,7 +73,13 @@ class Logic{
                 break;
             case "updateProduct":
                 $res = $this->dh->updateProduct($param);
-                break; 
+                break;
+            case "insertBestellung":
+                $res = $this->dh->insertBestellung($param);
+                break;
+            case "insertRechnungen":
+                $res = $this->dh->insertRechnungen($param);
+                break;
             default:
                 $res = "NI";
                 break;
