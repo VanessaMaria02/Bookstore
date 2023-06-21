@@ -40,8 +40,6 @@ function getProductfromCookie(){
 
     var uniqueProducts =[];
 
-    console.log(cart);
-
     for(var i = 0; i < products.length; i++){
         var innerArray = products[i];
         console.log(innerArray);
