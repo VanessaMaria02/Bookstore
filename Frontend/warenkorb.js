@@ -139,7 +139,8 @@ function displayprodukte(){
         }
     }
     console.log(gesamtpreis)
-    $("#gesamtkosten").append("<p>"+gesamtpreis+"</p>");
+    BestellungsPreis = gesamtpreis.toFixed(2);
+    $("#gesamtkosten").append("<p>"+BestellungsPreis+"€</p>");
 
         
        
