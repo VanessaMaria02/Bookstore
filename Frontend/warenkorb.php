@@ -21,6 +21,5 @@
 </div>
 
 <script src="warenkorb.js" type="text/javascript"></script>
-<script src="userBestellung.js" type="text/javascript"></script>
 
 </body>

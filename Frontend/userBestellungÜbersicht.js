@@ -1,8 +1,6 @@
 $(document).ready(function(){
     var userDaten = getCookie();
-    ajaxHandler("AllUserName", userDaten.uname, function(response){
-        ajaxHandler("getIDBestellungen", response.uid, displayBestellungen);
-    });
+    ajaxHandler("gerUserName", userDaten.uname, getUserBestellungen);
 
     $("#myTable").on("click", ".btn-secondary", function(){
     console.log("click");
@@ -11,6 +9,16 @@ $(document).ready(function(){
     });
     
     })
+
+    function getUserBestellungen(response){
+        console.log(response);
+        let uid = 0;
+        response.forEach(element =>{
+           uid = element.uid;
+        });
+        console.log(uid);
+        ajaxHandler("getIDBestellungen", uid, displayBestellungen);
+    }
 
     function displayBestellungen(bestellungen){
         console.log(bestellungen);

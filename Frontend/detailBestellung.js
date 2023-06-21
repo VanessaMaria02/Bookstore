@@ -21,11 +21,9 @@ $(document).ready(function(){
         +element.p_id+
         "</td><td>"
         +element.title+
-        "</td></td><td><input id = 'anzahl"
-        +element.p_id+
-        "' type = 'number' required value='"
+        "</td><td>"
         +element.anzahl+
-        "'></td><td>"
+        "</td><td>"
         +element.preis+
         "€</td><td>"
         + insgesamtPreis+
