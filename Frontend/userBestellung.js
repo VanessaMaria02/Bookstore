@@ -28,7 +28,9 @@ function getCardProducts(){
 
 function getProductfromCookie(){
     var products = getCardProducts();
-    var timestamp = new Date().getTime;
+    const currentDate = new Date();
+    console.log(currentDate);
+    const timestamp = currentDate.getTime();
     var userData = getCookie();
     var username = userData.uname;
 
@@ -68,15 +70,17 @@ function getProductfromCookie(){
             "p_id": product.id,
             "anzahl": productCounts[product.id]
             };
-           ajaxHandler("insertBestellung", orderData, function(response){
-        ajaxHandler("insertRechnungen", response, function(){
-            // Cookie löschen
-            document.cookie = "cartProducts=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            alert("Bestellung erfolgreich!")
-            window.location.href = "index.php";
-        });
+           
+           ajaxHandler("insertBestellung", orderData, function(){
+            console.log(response);
+           });
 
-    });
+           ajaxHandler("insertRechnungen", orderData, function(){
+                //Cookie löschen
+                document.cookie = "cartProducts=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                alert("Bestellung erfolgreich!");
+                window.location.href = "index.php";
+           });
  
         }
     }
