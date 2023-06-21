@@ -151,8 +151,8 @@ function displayprodukte(){
 function getProductfromCookie(){
     var products = getCardProducts();
     const currentDate = new Date();
-    console.log(currentDate);
     const timestamp = currentDate.getTime();
+    console.log(timestamp);
     var userData = getCookie();
     var username = userData.uname;
 

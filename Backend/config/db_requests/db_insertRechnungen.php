@@ -2,19 +2,29 @@
 if(true){
     require_once('dbacess.php');
 
-    $u_id = $param['u_id'];
+    $uname = $param['uname'];
     $timestamp = $param['timestamp'];
+    $p_id = $param['p_id'];
+    $anzahl = $param['anzahl'];
 
-    $sql = "SELECT * FROM rechnungen WHERE u_id = ? AND b_timestamp = ?";
+     //select u_ID
+    $sql = "SELECT u_id FROM user WHERE u_username = ?";
     $statment = $db->prepare($sql);
-    $statment->bind_param("is", $u_id, $timestamp);
+    $statment->bind_param("s", $uname);
     $statment->execute();
-    $ergebnis = $statment->get_result();
+    $zeile = $statment->get_result()->fetch_assoc();
+    $statment->close();
 
-    if($ergebnis->rowCount()!=0) {
-        $res = $ergebnis;
-        $statment->close();
-    } else {
+
+    //countrollieren ob rechnung bereits vorhanden ist
+    $sql = "SELECT COUNT(*) AS count FROM rechnungen WHERE u_id = ? AND b_timestamp = ?";
+    $statment = $db->prepare($sql);
+    $statment->bind_param("is", $zeile['u_id'], $timestamp);
+    $statment->execute();
+    $ergebnis = $statment->get_result()->fetch_assoc();
+
+    if($ergebnis['count'] == 0) {
+
         $statment->close();
         $sql = "INSERT INTO rechnungen (u_id, b_timestamp) VALUES (?,?)";
         $statment = $db->prepare($sql);
