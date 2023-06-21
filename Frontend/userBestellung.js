@@ -3,9 +3,7 @@ $(document).ready(function () {
     var userDaten = getCookie();
 
     if (userDaten.role === "user") {
-      let uname = userDaten.uname;
-      // methode getProductsfromCookie
-      window.location.href = "userBestellung.php"; 
+      getProductfromCookie()
       return;
     } else {
       alert("Sie müssen sich anmelden, um mit der Bestellung fortzufahren!");
@@ -35,7 +33,7 @@ function getProductfromCookie(){
     var username = userData.uname;
 
     if(products.length === 0){
-        $("#produkteWarenkorb").append('<p>Es sind keine Produkte im Warenkorb</p>'); 
+        alert("Es sind keine Produkte im Warenkorb!")
     }
 
     var productCounts ={};
@@ -67,7 +65,7 @@ function getProductfromCookie(){
         if(innerArray2.length >0){
             var product = innerArray2[0];
             let orderData = {
-            "uname": uname,
+            "uname": username,
             "timestamp": timestamp,
             "p_id": product.id,
             "anzahl": productCounts[product.id]

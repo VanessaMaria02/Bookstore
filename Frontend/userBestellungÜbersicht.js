@@ -1,49 +1,31 @@
 $(document).ready(function(){
-    var urlParams = new URLSearchParams(window.location.search);
-    var id = urlParams.get("id");
-    console.log(id);
-    $("#ueberschrift").append("<h3>Nr.: "+id+"</h3>");
-    
-    ajaxHandler("getIDBestellungundProdukt", id, displayBestellung);
-    
+    var userDaten = getCookie();
+    ajaxHandler("AllUserName", userDaten.uname, function(response){
+        ajaxHandler("getIDBestellungen", response.uid, displayBestellungen);
+    });
+
     $("#myTable").on("click", ".btn-secondary", function(){
-        console.log("click");
-        var id2 = this.parentNode.id;
-        console.log(id2);
+    console.log("click");
+    var id = $(this).closest("tr").attr("id");
+    location.replace("./detailBestellung.php?id="+id);
     });
     
     })
 
-function displayBestellung(bestellung) {
-    console.log(bestellung);
-    let BestellungsPreis = 0;
-    bestellung.forEach(element => {
-        let insgesamtPreis = element.anzahl*element.preis;
-        BestellungsPreis += insgesamtPreis;
-        $("#myTable").append("<tr id ='"
-        +element.p_id+
-        "'><td style='text-align:center;'>"
-        +element.p_id+
-        "</td><td>"
-        +element.title+
-        "</td></td><td><input id = 'anzahl"
-        +element.p_id+
-        "' type = 'number' required value='"
-        +element.anzahl+
-        "'></td><td>"
-        +element.preis+
-        "€</td><td>"
-        + insgesamtPreis+
-        "€</td><td id ='"
-        +element.p_id+
-        "'><button id = 'edit' class='btn btn-secondary'>edit</button></td></tr>");
-    });
-    BestellungsPreis = BestellungsPreis.toFixed(2);
-    $("#myTable").append("<tr><td style='text-align:center;'></th><td></th><td></th><td>Preis Insgesamt: </th><td>"
-    + BestellungsPreis+
-    "€</th></tr>");
-    
-}
+    function displayBestellungen(bestellungen){
+        console.log(bestellungen);
+        bestellungen.forEach(element =>{
+            console.log(element.id);
+            console.log(element.timestamp);
+            $("#myTable").append("<tr id ='"
+            +element.id+
+            "'><td style='text-align:center;'>"
+            +element.id+
+            "</th><td>"
+            +element.timestamp+
+            "</th><td><button id = 'choose' class='btn btn-secondary'>select</button></td></tr>");
+        });
+        }
 
 function ajaxHandler(method, searchterm, nextFunc = ()=>{}) {
     $.ajax({
@@ -61,4 +43,22 @@ function ajaxHandler(method, searchterm, nextFunc = ()=>{}) {
             alert('Error, ein Problem ist aufgetreten: '+xhr.responseText);
         }
     });
+
 }
+function getCookie(){
+    var cookieValue = document.cookie
+    .split(";")
+    .map(row => row.trim())
+    .find(row => row.startsWith("urole="));
+
+    if(cookieValue){
+        var userDatenJson = cookieValue.split("=")[1];
+        var userDaten = JSON.parse(userDatenJson);
+
+        return userDaten;
+    }else{
+       var emptyUserDaten = [];
+       return emptyUserDaten;
+       
+    }
+} 

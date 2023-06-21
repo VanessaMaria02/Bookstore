@@ -1,25 +1,29 @@
-// sql code für die Datenbank
-
 <?php
 if(true){
     require_once('dbacess.php');
 
-    $ID = $param['ID'];
-    $kategorieID = $param['kategorieID'];
-    $titel = $param['titel'];
-    $beschreibung = $param['beschreibung'];
-    $autor = $param['autor'];
-    $preis = $param['preis'];
+    $uname = $param['uname'];
+    $timestamp = $param['timestamp'];
+    $p_id = $param['p_id'];
+    $anzahl = $param['anzahl'];
 
-    $sql = "UPDATE produkte SET k_id = ?, pr_title = ?, pr_preis = ?, pr_beschreibung = ?, pr_autor = ? WHERE pr_id = ?";
+    //select u_ID
+    $sql = "SELECT u_id FROM user WHERE u_username = ?";
     $statment = $db->prepare($sql);
-    $statment->bind_param("isdssi", $kategorieID, $titel, $preis, $beschreibung, $autor, $ID);
+    $statment->bind_param("s", $uname);
+    $statment->execute();
+    $zeile = $statment->get_result()->fetch_assoc();
+    $statment->close();
+    
+    $sql = "INSERT INTO bestellungen (u_id, pr_id, b_anzahl, b_timestamp) VALUES (?,?,?,?)";
+    $statment = $db->prepare($sql);
+    $statment->bind_param("iiis", $zeile['u_id'], $p_id, $anzahl, $timestamp);
     $statment->execute();
     $statment->close();
 
-    $sql = "SELECT * FROM produkte WHERE pr_id = ?";
+    $sql = "SELECT * FROM bestellungen WHERE u_id = ? AND b_timestamp = ?";
     $statment = $db->prepare($sql);
-    $statment->bind_param("i", $param);
+    $statment->bind_param("is", $zeile['u_id'], $timestamp);
     $statment->execute();
     $res = $statment->get_result();
     $statment->close();
