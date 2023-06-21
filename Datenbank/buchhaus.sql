@@ -277,7 +277,7 @@ ALTER TABLE `produkte`
 --
 ALTER TABLE `rechnungen`
   ADD PRIMARY KEY (`r_id`),
-  ADD UNIQUE KEY `u_id` (`u_id`),
+  ADD KEY `u_id` (`u_id`),
   ADD KEY `b_timestamp` (`b_timestamp`);
 
 --
