@@ -15,13 +15,15 @@ if(true){
     $zeile = $statment->get_result()->fetch_assoc();
     $statment->close();
 
-    $sql = "SELECT * FROM rechnungen WHERE u_id = ? AND b_timestamp = ?";
+
+    //countrollieren ob rechnung bereits vorhanden ist
+    $sql = "SELECT COUNT(*) AS count FROM rechnungen WHERE u_id = ? AND b_timestamp = ?";
     $statment = $db->prepare($sql);
     $statment->bind_param("is", $zeile['u_id'], $timestamp);
     $statment->execute();
-    $ergebnis = $statment->get_result();
+    $ergebnis = $statment->get_result()->fetch_assoc();
 
-    if($ergebnis->rowCount() == 0) {
+    if($ergebnis['count'] == 0) {
 
         $statment->close();
         $sql = "INSERT INTO rechnungen (u_id, b_timestamp) VALUES (?,?)";
@@ -37,7 +39,7 @@ if(true){
         $res = $statment->get_result();
       
     } else {
-          $res = $ergebnis;
+        $res = $ergebnis;
         $statment->close();
     }
     
