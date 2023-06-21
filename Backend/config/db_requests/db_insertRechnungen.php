@@ -7,7 +7,7 @@ if(true){
 
     $sql = "SELECT * FROM rechnungen WHERE u_id = ? AND b_timestamp = ?";
     $statment = $db->prepare($sql);
-    $statment->bind_param("is", $zeile['u_id'], $timestamp);
+    $statment->bind_param("is", $u_id, $timestamp);
     $statment->execute();
     $ergebnis = $statment->get_result();
 

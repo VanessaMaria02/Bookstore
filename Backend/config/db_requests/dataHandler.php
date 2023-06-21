@@ -353,6 +353,7 @@ class DataHandler{
             }
             return $result;
         }
+
         public function insertRechnungen($param){
             require("db_insertRechnungen.php");
             $result = array();
@@ -365,5 +366,22 @@ class DataHandler{
             }
             return $result;
         }
+
+
+        public function  gerUserName($param){
+            require("db_ gerUserName.php");
+            $result = array();
+            foreach ($res as $line)
+            {
+                array_push($result, new User(
+                    $line["u_id"],
+                    $line["u_username"],
+                    $line["u_password"],
+                    $line["u_role"]
+                ));
+            }
+            return $result;
+        }
+       
         
 }

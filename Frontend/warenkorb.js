@@ -4,6 +4,20 @@ $(document).ready(function() {
     $(document).on("change", "#change", changeAnzahl);
     $(document).on("click", "#remove", removeItem);
 
+
+    //für die Bestellung 
+    $(document).on('click', '#produkteBestellen', function () {
+        var userDaten = getCookie();
+    
+        if (userDaten.role === "user") {
+          getProductfromCookie()
+          return;
+        } else {
+          alert("Sie müssen sich anmelden, um mit der Bestellung fortzufahren!");
+          window.location.href = "login.php";
+        }
+      });
+
 });
 
 //wenn die anzahl eines produkt verändert wird, wird diese Funktion aufgerufen
@@ -131,4 +145,116 @@ function displayprodukte(){
        
     
     
+}
+
+//für user bestellung
+function getProductfromCookie(){
+    var products = getCardProducts();
+    const currentDate = new Date();
+    console.log(currentDate);
+    const timestamp = currentDate.getTime();
+    var userData = getCookie();
+    var username = userData.uname;
+
+    if(products.length === 0){
+        alert("Es sind keine Produkte im Warenkorb!")
+    }
+
+    var productCounts ={};
+
+    var uniqueProducts =[];
+
+    for(var i = 0; i < products.length; i++){
+        var innerArray = products[i];
+        console.log(innerArray);
+
+        if(innerArray.length >0){
+            var product = innerArray[0];
+            var productId = product.id;
+            
+            if(productCounts[productId]){
+                productCounts[productId]++;
+            }else{
+                productCounts[productId] = 1;
+                uniqueProducts.push(products[i]);
+            }
+        }
+    }
+
+    for(var i = 0; i < uniqueProducts.length; i++){
+        var innerArray2 = uniqueProducts[i];
+        console.log(innerArray2);
+        if(innerArray2.length >0){
+            var product = innerArray2[0];
+            let orderData = {
+            "uname": username,
+            "timestamp": timestamp,
+            "p_id": product.id,
+            "anzahl": productCounts[product.id]
+            };
+            //bekommt leere respons?
+           ajaxHandler("insertBestellung", orderData, InsertRechnungen);
+ 
+        }
+    }
+    
+}
+
+function InsertRechnungen(response){
+    console.log(response);
+    let bestellungData;
+
+    response.forEach(element =>{
+       bestellungData = {
+            "u_id": element.u_id,
+            "timestamp": element.timestamp
+            };
+    })
+    
+
+    ajaxHandler("insertRechnungen", bestellungData, function(){
+        //Cookie löschen
+        document.cookie = "cartProducts=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        alert("Bestellung erfolgreich!");
+        window.location.href = "index.php";
+            
+    });
+
+}
+
+function getCookie(){
+    var cookieValue = document.cookie
+    .split(";")
+    .map(row => row.trim())
+    .find(row => row.startsWith("urole="));
+
+    if(cookieValue){
+        var userDatenJson = cookieValue.split("=")[1];
+        var userDaten = JSON.parse(userDatenJson);
+
+        return userDaten;
+    }else{
+       var emptyUserDaten = [];
+       return emptyUserDaten;
+       
+    }
+} 
+
+function ajaxHandler(method, searchterm, nextFunc = ()=>{}){
+
+    $.ajax({
+        type: "GET",
+        url: "../Backend/serviceHandler.php",
+        cache: false,
+        data:{method: method, param: searchterm},
+        dataType: "json",
+        success: function(response){
+            console.log(response);
+            nextFunc(response);
+        },
+        error: function(xhr){
+            console.log(xhr);
+            alert('Error, ein Problem ist aufgetreten überprüfen Sie ihre Eingaben'+xhr.responseText);
+        }
+    });
 }
