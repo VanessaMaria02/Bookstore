@@ -192,35 +192,26 @@ function getProductfromCookie(){
             "p_id": product.id,
             "anzahl": productCounts[product.id]
             };
-            //bekommt leere respons?
-           ajaxHandler("insertBestellung", orderData, InsertRechnungen);
+           
+           ajaxHandler("insertBestellung", orderData, function(response){
+            console.log(response);
+           });
+
+           ajaxHandler("insertRechnungen", orderData, function(response){
+            console.log(response);
+           });
  
         }
     }
+
+     //Cookie löschen
+     document.cookie = "cartProducts=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+     alert("Bestellung erfolgreich!");
+     window.location.href = "index.php";
     
 }
 
-function InsertRechnungen(response){
-    console.log(response);
-    let bestellungData;
 
-    response.forEach(element =>{
-       bestellungData = {
-            "u_id": element.u_id,
-            "timestamp": element.timestamp
-            };
-    })
-    
-
-    ajaxHandler("insertRechnungen", bestellungData, function(){
-        //Cookie löschen
-        document.cookie = "cartProducts=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        alert("Bestellung erfolgreich!");
-        window.location.href = "index.php";
-            
-    });
-
-}
 
 function getCookie(){
     var cookieValue = document.cookie
