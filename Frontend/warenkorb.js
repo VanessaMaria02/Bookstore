@@ -147,12 +147,27 @@ function displayprodukte(){
     
 }
 
+//timestamp zu formatieren
+function formatTimestamp(timestamp) {
+    var date = new Date(timestamp);
+  
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var day = ('0' + date.getDate()).slice(-2);
+    var hours = ('0' + date.getHours()).slice(-2);
+    var minutes = ('0' + date.getMinutes()).slice(-2);
+    var seconds = ('0' + date.getSeconds()).slice(-2);
+  
+    var formattedTimestamp = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    return formattedTimestamp;
+  }
+
 //für user bestellung
 function getProductfromCookie(){
     var products = getCardProducts();
-    const currentDate = new Date();
-    const timestamp = currentDate.getTime();
-    console.log(timestamp);
+    var currentTimestamp = Date.now();
+    var formattedTimestamp = formatTimestamp(currentTimestamp);
+    console.log(formattedTimestamp);
     var userData = getCookie();
     var username = userData.uname;
 
@@ -188,7 +203,7 @@ function getProductfromCookie(){
             var product = innerArray2[0];
             let orderData = {
             "uname": username,
-            "timestamp": timestamp,
+            "timestamp": formattedTimestamp,
             "p_id": product.id,
             "anzahl": productCounts[product.id]
             };
