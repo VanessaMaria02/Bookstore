@@ -358,7 +358,7 @@ class DataHandler{
             $result = array();
             foreach ($res as $line)
             {
-                array_push($result, new userBestellung(
+                array_push($result, new userBestellung( // da nicht new rechnung?
                     $line["u_id"],
                     $line["b_timestamp"]
                 ));

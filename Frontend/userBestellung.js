@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     if (userDaten.role === "user") {
       let uname = userDaten.uname;
-      loadAddress(uname);
+      // methode getProductsfromCookie
       window.location.href = "userBestellung.php"; 
       return;
     } else {
